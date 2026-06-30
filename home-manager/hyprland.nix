@@ -71,7 +71,7 @@
       bind = [
         "$mod, Return, exec, kitty"
         "$mod SHIFT, Q, killactive"
-        "$mod, Space, exec, wofi --show drun"
+        "$mod, Space, exec, rofi -modi drun -show drun -show-icons"
         "$mod SHIFT, E, exit"
 
         ", PRINT, exec, hyprshot -m region --freeze --output-folder ~/Pictures/"
