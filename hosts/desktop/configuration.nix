@@ -2,7 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, user, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  user,
+  ...
+}:
 let
   pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
@@ -13,7 +19,7 @@ in
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/efi";
     };
-     grub = {
+    grub = {
       enable = true;
       devices = [ "nodev" ];
       default = "saved";
@@ -22,7 +28,7 @@ in
       configurationLimit = 10;
     };
     timeout = 5;
-  }; 
+  };
 
   networking = {
     hostName = "desktop"; # Define your hostname.
@@ -34,10 +40,13 @@ in
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       # cachix for hyprland
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
   };
 
@@ -71,7 +80,7 @@ in
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
   };
-  
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Enable bluetooth
@@ -90,13 +99,15 @@ in
     };
   };
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -105,10 +116,10 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     firefox
-     kitty
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    firefox
+    kitty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -119,10 +130,12 @@ in
     enableSSHSupport = true;
   };
 
-  # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  security.sudo.extraConfig = ''
+    Defaults timestamp_timeout=30
+  '';
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
