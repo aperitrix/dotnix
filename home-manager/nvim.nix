@@ -117,6 +117,8 @@
 
       # Git
       lazygit.enable = true;
+
+      spectre.enable = true;
     };
 
     keymaps = [
@@ -277,6 +279,86 @@
         key = "<";
         action = "<gv";
         options.desc = "Outdent and reselect";
+      }
+
+      # Search & Replace (Spectre - project-wide)
+      {
+        mode = "n";
+        key = "<leader>sr";
+        action = "<cmd>lua require('spectre').toggle()<CR>";
+        options.desc = "Replace in files (Spectre)";
+      }
+      {
+        mode = "n";
+        key = "<leader>sW";
+        action = "<cmd>lua require('spectre').open_visual({select_word=true})<CR>";
+        options.desc = "Search current word";
+      }
+      {
+        mode = "v";
+        key = "<leader>sW";
+        action = "<cmd>lua require('spectre').open_visual()<CR>";
+        options.desc = "Search current selection";
+      }
+      {
+        mode = "n";
+        key = "<leader>sp";
+        action = "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>";
+        options.desc = "Search in current file";
+      }
+
+      # Telescope-based search
+      {
+        mode = "n";
+        key = "<leader>sg";
+        action = "<cmd>Telescope live_grep<CR>";
+        options.desc = "Grep (root dir)";
+      }
+      {
+        mode = "n";
+        key = "<leader>sw";
+        action = "<cmd>Telescope grep_string<CR>";
+        options.desc = "Search word under cursor";
+      }
+      {
+        mode = "v";
+        key = "<leader>sw";
+        action = "<cmd>Telescope grep_string<CR>";
+        options.desc = "Search word under cursor";
+      }
+      {
+        mode = "n";
+        key = "<leader>sb";
+        action = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
+        options.desc = "Search in current buffer";
+      }
+
+      # Native buffer-local find & replace
+      {
+        mode = "n";
+        key = "<leader>/";
+        action = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
+        options.desc = "Fuzzy search in buffer";
+      }
+      {
+        mode = "n";
+        key = "<leader>rr";
+        action = ":%s/";
+        options.desc = "Replace in buffer";
+      }
+      {
+        mode = "v";
+        key = "<leader>rr";
+        action = ":s/";
+        options.desc = "Replace in selection";
+      }
+
+      # Quick word-under-cursor replace (classic LazyVim-adjacent pattern)
+      {
+        mode = "n";
+        key = "<leader>cR";
+        action = ":%s/\\<<C-r><C-w>\\>//g<Left><Left>";
+        options.desc = "Rename word under cursor (buffer)";
       }
     ];
   };
