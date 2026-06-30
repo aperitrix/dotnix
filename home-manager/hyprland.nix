@@ -73,6 +73,7 @@
         "$mod SHIFT, Q, killactive"
         "$mod, Space, exec, rofi -modi drun -show drun -show-icons"
         "$mod SHIFT, E, exit"
+        "$mod, Space,   exec, swaylock -S"
 
         ", PRINT, exec, hyprshot -m region --freeze --output-folder ~/Pictures/"
         "$mod SHIFT, S, exec,hyprshot -m region --freeze --clipboard"
