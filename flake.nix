@@ -40,6 +40,8 @@
       lib = nixpkgs.lib;
     in
     {
+      homeManagerModules.common = ./home-manager;
+
       nixosConfigurations = {
         desktop = lib.nixosSystem {
           inherit system;
@@ -55,7 +57,7 @@
                 extraSpecialArgs = { inherit inputs user; };
                 users.${user} = {
                   imports = [
-                    ./home-manager
+                    self.homeManagerModules.common
                     nixvim.homeModules.nixvim
                   ];
                 };
