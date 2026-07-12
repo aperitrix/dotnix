@@ -3,6 +3,11 @@
   programs.bash = {
     enable = true;
     shellAliases = {
+      v = "nvim";
+
+      mkdir = "mkdir -p";
+
+      # Git
       ga = "git add";
       gaa = "git add .";
       gb = "git branch";
