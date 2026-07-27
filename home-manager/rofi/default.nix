@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 {
   programs.rofi = {
-    enable = true;
+    enable = false;
     theme = ./round.rasi;
   };
 }

@@ -10,7 +10,7 @@
   ];
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = false;
     # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
     package = null;
     portalPackage = null;
@@ -28,7 +28,8 @@
       ];
 
       monitor = [
-        ",preferred,auto,1"
+        "DP-1,preferred,0x0,1"
+        ",preferred,auto-center-right,1"
       ];
 
       general = {

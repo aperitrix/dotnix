@@ -16,9 +16,6 @@
     };
     extraConfig = ''
       copy_on_select yes
-
-      map ctrl+c       copy_and_clear_or_interrupt
-      map ctrl+v       paste_from_clipboard
     '';
   };
 }

@@ -16,6 +16,11 @@
 
     lazygit.url = "github:jesseduffield/lazygit";
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -25,6 +30,7 @@
       home-manager,
       nixvim,
       lazygit,
+      #niri,
       ...
     }:
     let
