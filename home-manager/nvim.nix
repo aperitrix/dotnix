@@ -15,11 +15,6 @@
     globals.mapleader = " ";
     globals.maplocalleader = " ";
 
-    colorschemes.tokyonight = {
-      enable = true;
-      settings.style = "night";
-    };
-
     opts = {
       number = true;
       relativenumber = true;
@@ -44,7 +39,7 @@
       # UI
       lualine = {
         enable = true;
-        settings.options.theme = "tokyonight";
+        settings.options.theme = "auto";
       };
       bufferline.enable = true;
       indent-blankline.enable = true;
