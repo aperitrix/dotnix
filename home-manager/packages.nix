@@ -15,6 +15,7 @@
     fira-code
     fira-code-symbols
     material-design-icons
+    nerd-fonts.fira-code
   ];
 
 }

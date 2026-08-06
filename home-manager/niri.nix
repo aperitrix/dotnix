@@ -55,7 +55,7 @@
       };
 
       binds = {
-        "Mod+Return".action.spawn = "kitty";
+        "Mod+Return".action.spawn = "foot";
         "Mod+Shift+Q".action.close-window = { };
         "Mod+Space".action.spawn-sh = "noctalia msg panel-toggle launcher";
         "Mod+Shift+E".action.quit = { };
