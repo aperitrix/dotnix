@@ -1,11 +1,26 @@
-{ ... }:
+{ pkgs, ... }:
 {
-  programs.bash = {
-    enable = false;
+  programs.fish = {
+    enable = true;
+
     shellAliases = {
-      v = "nvim";
+      ma = "export PAGER='most' & man";
+
+      nix-shell = "nix-shell --command \"fish\"";
 
       mkdir = "mkdir -p";
+      tree = "tree -C";
+    };
+
+    shellAbbrs = {
+      ns = "nix-shell";
+
+      nrs = "sudo nixos-rebuild switch --flake ~/.setup/#dell-laptop";
+
+      poweroff = "systemctl poweroff";
+      reboot = "systemctl reboot";
+
+      v = "nvim";
 
       # Git
       ga = "git add";
