@@ -9,9 +9,6 @@
   user,
   ...
 }:
-let
-  pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
 {
   # Bootloader.
   boot.loader = {
@@ -44,41 +41,38 @@ in
         "nix-command"
         "flakes"
       ];
-      # cachix for hyprland
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
   };
 
   services.displayManager = {
-    sddm = {
-      enable = true;
-      # Enables experimental Wayland support
-      wayland.enable = true;
+    gdm.enable = false;
+  };
+
+  #  hardware = {
+  #  graphics = {
+  #    package = pkgs-unstable.mesa;
+
+  #    # if you also want 32-bit support (e.g for Steam)
+  #    enable32Bit = true;
+  #    package32 = pkgs-unstable.pkgsi686Linux.mesa;
+  #  };
+  #};
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --asterisks --cmd niri-session";
+        user = "greeter";
+      };
     };
   };
 
-  programs = {
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      withUWSM = false;
-    };
-  };
-
-  hardware = {
-    graphics = {
-      package = pkgs-unstable.mesa;
-
-      # if you also want 32-bit support (e.g for Steam)
-      enable32Bit = true;
-      package32 = pkgs-unstable.pkgsi686Linux.mesa;
-    };
-  };
+  programs.niri.enable = true;
+  programs.niri.package = pkgs.niri;
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
   };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

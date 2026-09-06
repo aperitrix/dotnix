@@ -16,6 +16,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    catppuccin.url = "github:catppuccin/nix";
+
   };
 
   outputs =
@@ -25,7 +32,9 @@
       home-manager,
       nixvim,
       lazygit,
-      #niri,
+      niri,
+      noctalia,
+      catppuccin,
       ...
     }:
     let
@@ -50,16 +59,18 @@
           modules = [
             ./hosts/desktop
 
+            niri.nixosModules.niri
             home-manager.nixosModules.home-manager
             {
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = { inherit inputs user; };
+                extraSpecialArgs = { inherit inputs user catppuccin; };
                 users.${user} = {
                   imports = [
                     self.homeManagerModules.common
                     nixvim.homeModules.nixvim
+                    catppuccin.homeModules.default
                   ];
                 };
               };
