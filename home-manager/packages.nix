@@ -8,6 +8,8 @@
     unzip
     less
 
+    wdisplays
+
     discord
 
     # Fonts
@@ -16,6 +18,9 @@
     fira-code-symbols
     material-design-icons
     nerd-fonts.fira-code
+
+    kdePackages.dolphin
+    kdePackages.qtsvg # icons for dolphin
   ];
 
 }
