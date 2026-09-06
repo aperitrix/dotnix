@@ -38,6 +38,8 @@
       timeoutlen = 300;
       undofile = true;
       scrolloff = 8;
+      winblend = 15;
+      pumblend = 15;
     };
 
     plugins = {
@@ -50,9 +52,47 @@
       indent-blankline.enable = true;
       nvim-tree.enable = true;
       which-key.enable = true;
-      gitsigns.enable = true;
       noice.enable = true;
       notify.enable = true;
+
+      # Git
+      gitsigns = {
+        enable = true;
+        settings = {
+          current_line_blame = true;
+          current_line_blame_opts = {
+            virt_text = true;
+            virt_text_pos = "eol";
+          };
+          signcolumn = true;
+          watch_gitdir.follow_files = true;
+        };
+      };
+      gitblame.enable = true;
+      gitlinker.enable = true;
+      diffview.enable = true;
+      neogit = {
+        enable = true;
+        settings = {
+          kind = "floating";
+          commit_popup.kind = "floating";
+          preview_buffer.kind = "floating";
+          popup.kind = "floating";
+          integrations.diffview = true;
+          disable_commit_confirmation = true;
+        };
+      };
+      lazygit.enable = true;
+
+      # Floating terminal
+      toggleterm = {
+        enable = true;
+        settings = {
+          direction = "float";
+          open_mapping = "[[<leader>tf]]";
+          float_opts.border = "curved";
+        };
+      };
 
       # Fuzzy finding
       telescope = {
@@ -114,9 +154,6 @@
           python = [ "black" ];
         };
       };
-
-      # Git
-      lazygit.enable = true;
 
       spectre.enable = true;
     };
@@ -258,6 +295,72 @@
         key = "<leader>gg";
         action = "<cmd>LazyGit<CR>";
         options.desc = "LazyGit";
+      }
+      {
+        mode = "n";
+        key = "<leader>gs";
+        action = "<cmd>Gitsigns stage_hunk<CR>";
+        options.desc = "Stage hunk";
+      }
+      {
+        mode = "n";
+        key = "<leader>gr";
+        action = "<cmd>Gitsigns reset_hunk<CR>";
+        options.desc = "Reset hunk";
+      }
+      {
+        mode = "n";
+        key = "<leader>gp";
+        action = "<cmd>Gitsigns preview_hunk<CR>";
+        options.desc = "Preview hunk";
+      }
+      {
+        mode = "n";
+        key = "<leader>gb";
+        action = "<cmd>Gitsigns blame_line<CR>";
+        options.desc = "Blame line (full)";
+      }
+      {
+        mode = "n";
+        key = "]h";
+        action = "<cmd>Gitsigns next_hunk<CR>";
+        options.desc = "Next hunk";
+      }
+      {
+        mode = "n";
+        key = "[h";
+        action = "<cmd>Gitsigns prev_hunk<CR>";
+        options.desc = "Prev hunk";
+      }
+      {
+        mode = "n";
+        key = "<leader>gd";
+        action = "<cmd>DiffviewOpen<CR>";
+        options.desc = "Open diffview";
+      }
+      {
+        mode = "n";
+        key = "<leader>gc";
+        action = "<cmd>DiffviewClose<CR>";
+        options.desc = "Close diffview";
+      }
+      {
+        mode = "n";
+        key = "<leader>gn";
+        action = "<cmd>Neogit<CR>";
+        options.desc = "Neogit";
+      }
+      {
+        mode = "n";
+        key = "<leader>gy";
+        action = "<cmd>lua require('gitlinker').get_buf_range_url()<CR>";
+        options.desc = "Copy git permalink";
+      }
+      {
+        mode = "t";
+        key = "<leader>tf";
+        action = "<C-\\><C-n><cmd>ToggleTerm<CR>";
+        options.desc = "Toggle floating terminal";
       }
 
       # Clear search highlight
