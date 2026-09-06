@@ -15,6 +15,11 @@
     globals.mapleader = " ";
     globals.maplocalleader = " ";
 
+    colorschemes.catppuccin = {
+      enable = true;
+      settings.transparent_background = true;
+    };
+
     opts = {
       number = true;
       relativenumber = true;

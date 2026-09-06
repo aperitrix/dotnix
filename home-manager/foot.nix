@@ -9,8 +9,13 @@
         font = "FiraCode Nerd Font Mono:size=11:fontfeatures=ss02 calt zero";
         shell = "fish";
       };
-      "colors-dark".background  = "1e1e2eBF";  # 0.75 alpha
-      "colors-light".background = "eff1f5BF";
+      "colors-dark".alpha = "0.85";
+      "colors-dark".blur = true;
+      "colors-light".alpha = "0.85";
+      "colors-light".blur = true;
+      scrollback = {
+        lines = 10000;
+      };
     };
   };
 }

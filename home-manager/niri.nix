@@ -18,16 +18,12 @@
         WLR_RENDERER_ALLOW_SOFTWARE = "1";
         NOZ_ENABLE_WAYLAND = "1";
         NIXOS_OZONE_WL = "1";
-      };
-
-      outputs = {
-        "DP-1" = {
-          scale = 0.8;
-          position = {
-            x = 0;
-            y = 0;
-          };
-        };
+        QT_QPA_PLATFORM = "wayland";
+        QT_QPA_PLATFORMTHEME = "gtk3";
+        QT_QPA_PLATFORMTHEME_QT6 = "gtk3";
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        ELM_DISPLAY = "wl";
+        SDL_VIDEODRIVER = "wayland";
       };
 
       input = {
@@ -45,14 +41,29 @@
       };
 
       layout = {
-        gaps = 6;
-        border = {
+        gaps = 10;
+        default-column-width = {
+          proportion = 0.5;
+        };
+        focus-ring = {
           enable = true;
-          width = 2;
-          active.color = "#C85CE7";
-          inactive.color = "#150457";
+          width = 3;
+          active.color = "#cba6f7";
+          inactive.color = "#6c7086";
         };
       };
+
+      window-rules = [
+        {
+          geometry-corner-radius = {
+            top-left = 15.0;
+            top-right = 15.0;
+            bottom-right = 15.0;
+            bottom-left = 15.0;
+          };
+          clip-to-geometry = true;
+        }
+      ];
 
       binds = {
         "Mod+Return".action.spawn = "foot";
@@ -76,6 +87,11 @@
         "Mod+K".action.focus-window-or-workspace-up = { };
         "Mod+L".action.focus-column-or-monitor-right = { };
 
+        "Mod+Left".action.focus-monitor-left = { };
+        "Mod+Down".action.focus-workspace-down = { };
+        "Mod+Up".action.focus-workspace-up = { };
+        "Mod+Right".action.focus-monitor-right = { };
+
         "Mod+Shift+H".action.consume-or-expel-window-left = { };
         "Mod+Shift+J".action.move-window-down-or-to-workspace-down = { };
         "Mod+Shift+K".action.move-window-up-or-to-workspace-up = { };
@@ -91,6 +107,7 @@
         "Mod+Alt+J".action.move-workspace-to-monitor-down = { };
         "Mod+Alt+K".action.move-workspace-to-monitor-up = { };
         "Mod+F".action.maximize-column = { };
+        "Mod+C".action.center-column = { };
 
         "Mod+W".action.toggle-column-tabbed-display = { };
       };
