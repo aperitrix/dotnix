@@ -5,8 +5,7 @@
     server.enable = true;
     settings = {
       main = {
-        term = "screen-256color";
-        font = "FiraCode Nerd Font Mono:size=11:fontfeatures=ss02 calt zero";
+        font = "JetBrainsMono Nerd Font Mono:size=11";
         shell = "fish";
       };
       "colors-dark".alpha = "0.85";

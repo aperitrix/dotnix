@@ -15,8 +15,6 @@
     shellAbbrs = {
       ns = "nix-shell";
 
-      nrs = "sudo nixos-rebuild switch --flake ~/.setup/#dell-laptop";
-
       poweroff = "systemctl poweroff";
       reboot = "systemctl reboot";
 

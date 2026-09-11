@@ -7,6 +7,7 @@
     zip
     unzip
     less
+    htop
 
     wdisplays
 
@@ -17,7 +18,7 @@
     fira-code
     fira-code-symbols
     material-design-icons
-    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
 
     kdePackages.dolphin
     kdePackages.qtsvg # icons for dolphin
